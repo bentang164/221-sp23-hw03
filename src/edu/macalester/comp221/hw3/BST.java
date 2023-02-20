@@ -232,19 +232,18 @@ public class BST {
     public void inorderTraverse() {
         if ( isEmpty() ) {
             return;
-        }
-        else {
-	    // recur on left and right children, if they exist
-	    if ( hasLeftChild() ) {
-		leftChild.inorderTraverse();
-	    }
+        } else {
+            // recur on left and right children, if they exist
+            if ( hasLeftChild() ) {
+                leftChild.inorderTraverse();
+            }
 
-	    // handle the root node's value
-	    System.out.println(nodeValue);
+            // handle the root node's value
+            System.out.println(nodeValue);
 
-	    if ( hasRightChild() ) {
-		rightChild.inorderTraverse();
-	    }
+            if ( hasRightChild() ) {
+                rightChild.inorderTraverse();
+            }
         }
     }
         
@@ -267,32 +266,30 @@ public class BST {
      * then the left subtree, and then the right subtree
      */
     protected void printRecur(int depth) {
-	char indentSpaces[] = new char[depth];
-	for ( int i = 0; i < depth; i++ ) {
-	    indentSpaces[i] = ' ';
-	}
-	String indStr = new String(indentSpaces);
-	
-	if ( isLeaf() ) {
-	    System.out.println(indStr + "Leaf: " + nodeValue);
-	}
-	else {
-	    System.out.println(indStr + "Node: " + nodeValue);
-	    if ( hasLeftChild() ) {
-		System.out.println(indStr + "     LEFT:");
-		leftChild.printRecur(depth + 5);
-	    }
-	    else {
-		System.out.println(indStr + "     LEFT:  no left child");
-	    }
-	    if ( hasRightChild() ) {
-		System.out.println(indStr + "     RIGHT:");
-		rightChild.printRecur(depth + 5);
-	    }
-	    else {
-		System.out.println(indStr + "     RIGHT:  no right child");
-	    }
-	}
+        char indentSpaces[] = new char[depth];
+        for ( int i = 0; i < depth; i++ ) {
+            indentSpaces[i] = ' ';
+        }
+        String indStr = new String(indentSpaces);
+        
+        if ( isLeaf() ) {
+            System.out.println(indStr + "Leaf: " + nodeValue);
+        } else {
+            System.out.println(indStr + "Node: " + nodeValue);
+            if ( hasLeftChild() ) {
+                System.out.println(indStr + "     LEFT:");
+                leftChild.printRecur(depth + 5);
+            } else {
+                System.out.println(indStr + "     LEFT:  no left child");
+            }
+            if ( hasRightChild() ) {
+                System.out.println(indStr + "     RIGHT:");
+                rightChild.printRecur(depth + 5);
+            }
+            else {
+                System.out.println(indStr + "     RIGHT:  no right child");
+            }
+        }
     }
      
 
@@ -355,22 +352,22 @@ public class BST {
     	}
     	else {
             BST result = deleteRecur(value);
-	    if ( result != null ) {
-		// when root of tree changes, must handle specially
-		System.out.println("CHANGING ROOT!");
-		if ( result.isEmpty() ) {
-		    emptyTree = true;
-		    nodeValue = 0;
-		    leftChild = null;
-		    rightChild = null;
-		}
-		else {
-		    setNodeValue(result.getNodeValue());
-		    setLeftChild(result.getLeftChild());
-		    setRightChild(result.getRightChild());
-		}
+	        if ( result != null ) {
+                // when root of tree changes, must handle specially
+                System.out.println("CHANGING ROOT!");
+                if ( result.isEmpty() ) {
+                    emptyTree = true;
+                    nodeValue = 0;
+                    leftChild = null;
+                    rightChild = null;
+                }
+                else {
+                    setNodeValue(result.getNodeValue());
+                    setLeftChild(result.getLeftChild());
+                    setRightChild(result.getRightChild());
+                }
+            }
 	    }
-	}
     }
 
 
@@ -436,58 +433,58 @@ public class BST {
 
 
     public static void main(String[] args) {
-	BST tree = new BST();
-	System.out.println(tree.isEmpty());
-	System.out.println("Height of tree: " + tree.getHeight());
-	tree.printTree();
-	Integer foo = new Integer(3);
-	tree.insert(foo);
-	tree.printTree();
-	System.out.println("Height of tree: " + tree.getHeight());
-	BST t2 = new BST(1234);
-	tree.setLeftChild(t2);
-	tree.setRightChild(new BST(101));
-	System.out.println("Height of tree: " + tree.getHeight());
-	tree.preorderTraverse();
-	tree.inorderTraverse();
-	tree.postorderTraverse();
+        BST tree = new BST();
+        System.out.println(tree.isEmpty());
+        System.out.println("Height of tree: " + tree.getHeight());
+        tree.printTree();
+        Integer foo = new Integer(3);
+        tree.insert(foo);
+        tree.printTree();
+        System.out.println("Height of tree: " + tree.getHeight());
+        BST t2 = new BST(1234);
+        tree.setLeftChild(t2);
+        tree.setRightChild(new BST(101));
+        System.out.println("Height of tree: " + tree.getHeight());
+        tree.preorderTraverse();
+        tree.inorderTraverse();
+        tree.postorderTraverse();
 
-	BST newT = new BST();
-	List<Integer> valList = new ArrayList<Integer>();
-	for ( int i = 0; i < 20; i++ ) {
-	    int val = (int)(Math.random() * 100);	
-	    System.out.println("Inserting value " + val);
-	    valList.add(new Integer(val));	
-	    newT.insert(val);
-		System.out.println("    new Height = " + newT.getHeight());
-	}
-	newT.printTree();	
+        BST newT = new BST();
+        List<Integer> valList = new ArrayList<Integer>();
+        for ( int i = 0; i < 20; i++ ) {
+            int val = (int)(Math.random() * 100);	
+            System.out.println("Inserting value " + val);
+            valList.add(new Integer(val));	
+            newT.insert(val);
+            System.out.println("    new Height = " + newT.getHeight());
+        }
+        newT.printTree();	
 
-	List<Integer> extraList = new ArrayList<Integer>();
-	for ( int j = 0; j < 5; j++ ) {
-	    int val = (int)(Math.random() * 100);
-	    extraList.add(val);
-	}
-	Collections.shuffle(valList);
-	System.out.println("------------------Searching for values that are in tree:");
-	for ( int i = 0; i < 20; i++ ) {
-	    int v = valList.get(i);
-	    System.out.println("Searching for value " + v);
-	    System.out.println(newT.search(v));
-	}
-	System.out.println("------------------Searching for values that may not be there:");
-	for ( int i = 0; i < 5; i++ ) {
-	    int v = extraList.get(i);
-	    System.out.println("Searching for value " + v);
-	    System.out.println(newT.search(v));
-	}
+        List<Integer> extraList = new ArrayList<Integer>();
+        for ( int j = 0; j < 5; j++ ) {
+            int val = (int)(Math.random() * 100);
+            extraList.add(val);
+        }
+        Collections.shuffle(valList);
+        System.out.println("------------------Searching for values that are in tree:");
+        for ( int i = 0; i < 20; i++ ) {
+            int v = valList.get(i);
+            System.out.println("Searching for value " + v);
+            System.out.println(newT.search(v));
+        }
+        System.out.println("------------------Searching for values that may not be there:");
+        for ( int i = 0; i < 5; i++ ) {
+            int v = extraList.get(i);
+            System.out.println("Searching for value " + v);
+            System.out.println(newT.search(v));
+        }
 
-	Collections.shuffle(valList);
-	for ( int i = 0; i < 20; i++ ) {
-	    int v = valList.get(i);
-	    System.out.println("Deleting value " + v);
-	    newT.delete(v);
-	    newT.printTree();
-	}
+        Collections.shuffle(valList);
+        for ( int i = 0; i < 20; i++ ) {
+            int v = valList.get(i);
+            System.out.println("Deleting value " + v);
+            newT.delete(v);
+            newT.printTree();
+        }
     }
 };
