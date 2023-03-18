@@ -1,3 +1,3 @@
-# Assignment Title Goes Here
+# COMP 221 Spring 2023 Homework 03: Binary Search Tree
 
-Info about your assignment goes here
+Implementation of the Insert operation based on framework provided by Dr. Susan Fox.
